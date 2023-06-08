@@ -3,8 +3,8 @@ using Shapes;
 
 [ExecuteAlways]
 public class NodeRenderer : ImmediateModeShapeDrawer {
-    [SerializeField] private float _nodeRadius;
-    [SerializeField] private Color _nodeColor;
+    [SerializeField] private AnimationCurve _nodeRadiusToAmountOfAir;
+    [SerializeField] private Gradient _nodeColorToAmountOfAir;
 
     [SerializeField] private AirSimulation _airSimulation;
 
@@ -26,7 +26,11 @@ public class NodeRenderer : ImmediateModeShapeDrawer {
                     z = 0f,
                 };
 
-                Draw.Disc(nodePositionInWorld, _nodeRadius, _nodeColor);
+                Draw.Disc(
+                    nodePositionInWorld,
+                    _nodeRadiusToAmountOfAir.Evaluate(_airSimulation.Nodes[i,j].AmountOfAir),
+                    _nodeColorToAmountOfAir.Evaluate(_airSimulation.Nodes[i,j].AmountOfAir)
+                );
             }
         }
     }
