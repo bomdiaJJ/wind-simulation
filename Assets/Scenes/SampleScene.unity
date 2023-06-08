@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 1462763460}
   - component: {fileID: 1462763461}
   - component: {fileID: 1462763462}
+  - component: {fileID: 1462763463}
   m_Layer: 0
   m_Name: Air Simulation
   m_TagString: Untagged
@@ -492,3 +493,18 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   _airSimulation: {fileID: 1462763461}
+--- !u!114 &1462763463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462763459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37bf169b14aa8c49b370308f544581c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _airSimulation: {fileID: 1462763461}
+  _selectedNode: {x: 0, y: 0}
+  _amountOfAirToSet: 1
