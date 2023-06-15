@@ -11,13 +11,10 @@ public class AirSimulation : MonoBehaviour {
     public void Step() {
         for (int i = 0; i < _gridSize.x; i++) {
             for (int j = 0; j < _gridSize.y; j++) {
-                if (i+1 >= Nodes.GetLength(0)) continue;
+                // if (i+1 >= Nodes.GetLength(0)) continue;
+                // if (i-1 <= 0) continue;
 
-                if (Nodes[i,j].AmountOfAir > Nodes[i+1,j].AmountOfAir) {
-                    float allAir = Nodes[i,j].AmountOfAir + Nodes[i+1,j].AmountOfAir;
-                    Nodes[i,j].AmountOfAir = allAir / 2f;
-                    Nodes[i+1,j].AmountOfAir = allAir / 2f;
-                }
+                
             }
         }
     }
@@ -30,6 +27,7 @@ public class AirSimulation : MonoBehaviour {
             for (int j = 0; j < _gridSize.y; j++) {
                 Nodes[i,j].NodePosition = new Vector2Int(i, j);
                 Nodes[i,j].AmountOfAir = _initialAmountOfAir;
+                Nodes[i,j].NodeVelocity = Vector2.zero;
             }
         }
     }
