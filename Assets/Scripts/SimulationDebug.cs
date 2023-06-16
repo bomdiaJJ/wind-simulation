@@ -14,6 +14,6 @@ public class SimulationDebug : MonoBehaviour {
             return;
         }
 
-        _airSimulation.Nodes[_selectedNode.x, _selectedNode.y].AmountOfAir = _amountOfAirToSet;
+        _airSimulation.Nodes[_selectedNode.x, _selectedNode.y].Density = _amountOfAirToSet;
     }
 }

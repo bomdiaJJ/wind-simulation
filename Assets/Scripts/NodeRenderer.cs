@@ -28,8 +28,8 @@ public class NodeRenderer : ImmediateModeShapeDrawer {
 
                 Draw.Disc(
                     nodePositionInWorld,
-                    _nodeRadiusToAmountOfAir.Evaluate(_airSimulation.Nodes[i,j].AmountOfAir),
-                    _nodeColorToAmountOfAir.Evaluate(_airSimulation.Nodes[i,j].AmountOfAir)
+                    _nodeRadiusToAmountOfAir.Evaluate(_airSimulation.Nodes[i,j].Density),
+                    _nodeColorToAmountOfAir.Evaluate(_airSimulation.Nodes[i,j].Density)
                 );
             }
         }

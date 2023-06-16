@@ -26,7 +26,7 @@ public class AirSimulation : MonoBehaviour {
         for (int i = 0; i < _gridSize.x; i++) {
             for (int j = 0; j < _gridSize.y; j++) {
                 Nodes[i,j].NodePosition = new Vector2Int(i, j);
-                Nodes[i,j].AmountOfAir = _initialAmountOfAir;
+                Nodes[i,j].Density = _initialAmountOfAir;
                 Nodes[i,j].NodeVelocity = Vector2.zero;
             }
         }
