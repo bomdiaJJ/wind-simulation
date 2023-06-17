@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801b1bd38dc79a2499dd75be7fad6531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridSize: {x: 10, y: 10}
+  _gridSize: {x: 11, y: 11}
   _initialAmountOfAir: 0.5
 --- !u!114 &1462763462
 MonoBehaviour:
@@ -507,5 +507,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _airSimulation: {fileID: 1462763461}
-  _selectedNode: {x: 0, y: 0}
-  _amountOfAirToSet: 1
+  _selectedNode: {x: 5, y: 5}
+  _amountOfAirToSet: 25
