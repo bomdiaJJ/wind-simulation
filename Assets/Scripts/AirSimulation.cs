@@ -7,6 +7,14 @@ public class AirSimulation : MonoBehaviour {
 
     public Node[,] Nodes { get; set; } = new Node[0,0];
 
+    private void Start() {
+        GenerateGrid();
+    }
+
+    private void FixedUpdate() {
+        Step();
+    }
+
     [Button("Step Simulation")]
     public void Step() {
 
