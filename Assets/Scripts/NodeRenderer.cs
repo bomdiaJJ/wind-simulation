@@ -37,7 +37,7 @@ public class NodeRenderer : ImmediateModeShapeDrawer {
                 // Velocity
                 Draw.Line(
                     nodePositionInWorld,
-                    nodePositionInWorld + ((Vector3) _airSimulation.Nodes[i, j].NodeVelocity.normalized * _velocityLineLength),
+                    nodePositionInWorld + Vector3.ClampMagnitude((Vector3) _airSimulation.Nodes[i, j].NodeVelocity, _velocityLineLength),
                     _nodeColorToAmountOfAir.Evaluate(_airSimulation.Nodes[i, j].NodeVelocity.magnitude)
                 );
             }
