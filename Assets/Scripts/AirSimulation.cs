@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 public class AirSimulation : MonoBehaviour {
     [SerializeField] private Vector2Int _gridSize;
     [SerializeField] private float _initialAmountOfAir;
+    [SerializeField] private Vector2 _initialVelocity;
 
     public Node[,] Nodes { get; set; } = new Node[0,0];
 
@@ -71,7 +72,7 @@ public class AirSimulation : MonoBehaviour {
             for (int j = 0; j < _gridSize.y; j++) {
                 Nodes[i,j].NodePosition = new Vector2Int(i, j);
                 Nodes[i,j].Density = _initialAmountOfAir;
-                Nodes[i,j].NodeVelocity = Vector2.zero;
+                Nodes[i,j].NodeVelocity = _initialVelocity;
             }
         }
     }

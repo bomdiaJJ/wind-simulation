@@ -3,6 +3,7 @@ using Shapes;
 
 [ExecuteAlways]
 public class NodeRenderer : ImmediateModeShapeDrawer {
+    [SerializeField] private float _velocityLineLength = .35f;
     [SerializeField] private AnimationCurve _nodeRadiusToAmountOfAir;
     [SerializeField] private Gradient _nodeColorToAmountOfAir;
 
@@ -26,10 +27,18 @@ public class NodeRenderer : ImmediateModeShapeDrawer {
                     z = 0f,
                 };
 
+                // Density
                 Draw.Disc(
                     nodePositionInWorld,
                     _nodeRadiusToAmountOfAir.Evaluate(_airSimulation.Nodes[i,j].Density),
                     _nodeColorToAmountOfAir.Evaluate(_airSimulation.Nodes[i,j].Density)
+                );
+
+                // Velocity
+                Draw.Line(
+                    nodePositionInWorld,
+                    nodePositionInWorld + ((Vector3) _airSimulation.Nodes[i, j].NodeVelocity.normalized * _velocityLineLength),
+                    _nodeColorToAmountOfAir.Evaluate(_airSimulation.Nodes[i, j].NodeVelocity.magnitude)
                 );
             }
         }
