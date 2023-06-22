@@ -17,6 +17,9 @@ public class AirSimulation : MonoBehaviour {
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space))
             _isSimulationRunning = !_isSimulationRunning;
+
+        if (Input.GetKeyDown(KeyCode.Return))
+            Step();
     }
 
     private void FixedUpdate() {

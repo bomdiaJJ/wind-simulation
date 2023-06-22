@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gridSize: {x: 11, y: 11}
-  _initialAmountOfAir: 0.5
+  _initialAmountOfAir: 0
   _initialVelocity: {x: 0, y: 0}
 --- !u!114 &1462763462
 MonoBehaviour:
@@ -446,9 +446,9 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0.1
-      outSlope: 0.1
+      value: 0.01
+      inSlope: 0.09
+      outSlope: 0.09
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -456,8 +456,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 0.1
-      inSlope: 0.1
-      outSlope: 0.1
+      inSlope: 0.09
+      outSlope: 0.09
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _airSimulation: {fileID: 1462763461}
   _selectedNodeIndex: {x: -1, y: -1}
-  _amountOfAirToSet: 1
+  _amountOfAirToSet: 30
   _nodePropertiesText: {fileID: 1703660893}
 --- !u!1 &1527886085
 GameObject:
