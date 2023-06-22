@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
@@ -9,12 +8,20 @@ public class AirSimulation : MonoBehaviour {
 
     public Node[,] Nodes { get; set; } = new Node[0,0];
 
+    private bool _isSimulationRunning = true;
+
     private void Start() {
         GenerateGrid();
     }
 
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space))
+            _isSimulationRunning = !_isSimulationRunning;
+    }
+
     private void FixedUpdate() {
-        Step();
+        if (_isSimulationRunning)
+            Step();
     }
 
     [Button("Step Simulation")]
