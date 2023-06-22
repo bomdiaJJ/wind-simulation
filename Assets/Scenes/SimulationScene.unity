@@ -184,8 +184,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 1462763462}
   - component: {fileID: 1462763463}
   m_Layer: 0
-  m_Name: Air Simulation
+  m_Name: --- Air Simulation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801b1bd38dc79a2499dd75be7fad6531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridSize: {x: 3, y: 3}
+  _gridSize: {x: 11, y: 11}
   _initialAmountOfAir: 0.5
   _initialVelocity: {x: 0, y: 0}
 --- !u!114 &1462763462
@@ -509,8 +509,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _airSimulation: {fileID: 1462763461}
-  _selectedNode: {x: 1, y: 1}
+  _selectedNodeIndex: {x: -1, y: -1}
   _amountOfAirToSet: 1
+  _nodePropertiesText: {fileID: 1703660893}
 --- !u!1 &1527886085
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +592,7 @@ GameObject:
   - component: {fileID: 1703660894}
   - component: {fileID: 1703660893}
   m_Layer: 5
-  m_Name: Node Indexes
+  m_Name: Node Properties
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,11 +638,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Node [12, 3]
-
-    Density: 20.1231
-
-    Velocity: (0.000, 0.000)'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
