@@ -509,8 +509,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _airSimulation: {fileID: 1462763461}
-  _selectedNodeIndex: {x: -1, y: -1}
-  _amountOfAirToSet: 30
+  _selectedNodeIndex: {x: 5, y: 5}
+  _amountOfAirToSet: 2
   _nodePropertiesText: {fileID: 1703660893}
 --- !u!1 &1527886085
 GameObject:

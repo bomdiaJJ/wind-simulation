@@ -33,46 +33,52 @@ public class AirSimulation : MonoBehaviour {
 
         for (int i = 0; i < _gridSize.x; i++) {
             for (int j = 0; j < _gridSize.y; j++) {
+                
+                Vector2 finalVelocity = Vector2.zero;
 
-                float averageDensityBetweenNodeAndNeighbours = Nodes[i, j].Density;
-                int nodesContributing = 1;
-                
-                // node da esquerda
-                if (i > 0) {
-                    averageDensityBetweenNodeAndNeighbours += Nodes[i-1, j].Density;
-                    nodesContributing++;
-                }
-                
-                // node da direita
-                if (i < _gridSize.x - 1) {
-                    averageDensityBetweenNodeAndNeighbours += Nodes[i + 1, j].Density;
-                    nodesContributing++;
-                }
+                //0.70710678f é igual 1/sqrt(2)
+                if (i > 0) { // esquerda
+                    
+                    if (j < _gridSize.y - 1) {
+                        float densityDifferenceTopLeft = Nodes[i, j].Density - Nodes[i - 1, j + 1].Density;
+                        finalVelocity += densityDifferenceTopLeft * 0.70710678f * (Vector2.left + Vector2.up).normalized;
+                    }
 
-                // node de cima
-                if (j > 0) {
-                    averageDensityBetweenNodeAndNeighbours += Nodes[i, j - 1].Density;
-                    nodesContributing++;
-                }   
-                
-                // node de baixo
-                if (j < _gridSize.y - 1) {
-                    averageDensityBetweenNodeAndNeighbours += Nodes[i, j+ 1].Density;
-                    nodesContributing++;
+                    float densityDifferenceLeft = Nodes[i, j].Density - Nodes[i - 1, j].Density;
+                    finalVelocity += Vector2.left * densityDifferenceLeft;
+                    
+                    if (j > 0) {
+                        float densityDifferenceBottomLeft = Nodes[i, j].Density - Nodes[i - 1, j - 1].Density;
+                        finalVelocity += densityDifferenceBottomLeft * 0.70710678f * (Vector2.left + Vector2.down).normalized;
+                    }
                 }
 
-                averageDensityBetweenNodeAndNeighbours /= nodesContributing;
+                if (i < _gridSize.x - 1) { // direita
+                    if (j < _gridSize.y - 1) {
+                        float densityDifferenceTopRight = Nodes[i, j].Density - Nodes[i + 1, j + 1].Density;
+                        finalVelocity += densityDifferenceTopRight * 0.70710678f * (Vector2.right + Vector2.up).normalized;
+                    }
 
-                newNodes[i, j].Density = averageDensityBetweenNodeAndNeighbours;
+                    float densityDifferenceRight = Nodes[i, j].Density - Nodes[i + 1, j].Density;
+                    finalVelocity += Vector2.right * densityDifferenceRight;
+                    
+                    if (j > 0) {
+                        float densityDifferenceBottomRight = Nodes[i, j].Density - Nodes[i + 1, j - 1].Density;
+                        finalVelocity += densityDifferenceBottomRight * 0.70710678f * (Vector2.right + Vector2.down).normalized;
+                    }
+                }
 
-                if (i > 0)
-                    newNodes[i - 1, j].Density = averageDensityBetweenNodeAndNeighbours;
-                if (i < _gridSize.x - 1)
-                    newNodes[i + 1, j].Density = averageDensityBetweenNodeAndNeighbours;
-                if (j > 0)
-                    newNodes[i, j - 1].Density = averageDensityBetweenNodeAndNeighbours;
-                if (j < _gridSize.y - 1)
-                    newNodes[i, j + 1].Density = averageDensityBetweenNodeAndNeighbours;
+                if (j > 0) { // baixo
+                    float densityDifferenceBottom = Nodes[i, j].Density - Nodes[i, j - 1].Density;
+                    finalVelocity += Vector2.down * densityDifferenceBottom;
+                }
+
+                if (j < _gridSize.y - 1) { // cima
+                    float densityDifferenceTop = Nodes[i, j].Density - Nodes[i, j + 1].Density;
+                    finalVelocity += Vector2.up * densityDifferenceTop;
+                }
+
+                newNodes[i, j].NodeVelocity = finalVelocity;
             }
         }
 
