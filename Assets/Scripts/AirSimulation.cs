@@ -113,11 +113,14 @@ public class AirSimulation : MonoBehaviour {
                 // QUANTO MAIS VELOCIDADE NA DIREÇÃO DELE, MAIS DENSIDADE ELE MANDA
                 // A DENSIDADE TOTAL ENVIADA DEPENDE DA MAGNITUDE DO VETOR DE VELOCIDADE
 
-                float horizontalVelocity = Mathf.Abs(newNodes[i, j].NodeVelocity.x);
-                float verticalVelocity = Mathf.Abs(newNodes[i, j].NodeVelocity.y);
+                float horizontalVelocity = Mathf.Abs(Nodes[i, j].NodeVelocity.x);
+                float verticalVelocity = Mathf.Abs(Nodes[i, j].NodeVelocity.y);
 
                 // 🟡 velocidade total parece um nome errado para isso aqui
                 float totalVelocity = horizontalVelocity + verticalVelocity;
+
+                if (totalVelocity == 0)
+                    continue;
 
                 float horizontalPartOfTotalVelocity = horizontalVelocity / totalVelocity;
                 float verticalPartOfTotalVelocity = verticalVelocity / totalVelocity;
@@ -143,18 +146,18 @@ public class AirSimulation : MonoBehaviour {
                 bool movedDensity = false;
 
                 if (rightNode.HasValue && Nodes[i, j].NodeVelocity.x > 0) {
-                    newNodes[rightNode.Value.x, rightNode.Value.y].Density += horizontalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude;
+                    newNodes[rightNode.Value.x, rightNode.Value.y].Density += horizontalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude * Nodes[i, j].Density;
                     movedDensity = true;
                 } else if (leftNode.HasValue && Nodes[i, j].NodeVelocity.x < 0) {
-                    newNodes[leftNode.Value.x, leftNode.Value.y].Density += horizontalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude;
+                    newNodes[leftNode.Value.x, leftNode.Value.y].Density += horizontalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude * Nodes[i, j].Density;
                     movedDensity = true;
                 }
 
                 if (topNode.HasValue && Nodes[i, j].NodeVelocity.y > 0) {
-                    newNodes[topNode.Value.x, topNode.Value.y].Density += verticalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude;
+                    newNodes[topNode.Value.x, topNode.Value.y].Density += verticalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude * Nodes[i, j].Density;
                     movedDensity = true;
                 } else if (bottomNode.HasValue && Nodes[i, j].NodeVelocity.y < 0) {
-                    newNodes[bottomNode.Value.x, bottomNode.Value.y].Density += verticalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude;
+                    newNodes[bottomNode.Value.x, bottomNode.Value.y].Density += verticalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude * Nodes[i, j].Density;
                     movedDensity = true;
                 }
 

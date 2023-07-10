@@ -39,6 +39,7 @@ public class SimulationDebug : MonoBehaviour {
             string.Concat(
                 $"Node [{_selectedNodeIndex.x}, {_selectedNodeIndex.y}]",
                 "\nDensity: ", _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].Density,
+                "\nMagnitude: ", _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].NodeVelocity.magnitude,
                 "\nVelocity: ", _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].NodeVelocity
             ); 
     }
