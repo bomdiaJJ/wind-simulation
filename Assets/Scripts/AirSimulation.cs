@@ -140,17 +140,26 @@ public class AirSimulation : MonoBehaviour {
                     ? new Vector2Int(i - 1, j)
                     : null;
 
+                bool movedDensity = false;
+
                 if (rightNode.HasValue && Nodes[i, j].NodeVelocity.x > 0) {
                     newNodes[rightNode.Value.x, rightNode.Value.y].Density += horizontalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude;
+                    movedDensity = true;
                 } else if (leftNode.HasValue && Nodes[i, j].NodeVelocity.x < 0) {
                     newNodes[leftNode.Value.x, leftNode.Value.y].Density += horizontalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude;
+                    movedDensity = true;
                 }
 
                 if (topNode.HasValue && Nodes[i, j].NodeVelocity.y > 0) {
                     newNodes[topNode.Value.x, topNode.Value.y].Density += verticalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude;
+                    movedDensity = true;
                 } else if (bottomNode.HasValue && Nodes[i, j].NodeVelocity.y < 0) {
                     newNodes[bottomNode.Value.x, bottomNode.Value.y].Density += verticalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude;
+                    movedDensity = true;
                 }
+
+                if (movedDensity)
+                    newNodes[i, j].Density -= Nodes[i,j].Density;
 
             }
         }
