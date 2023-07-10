@@ -27,8 +27,27 @@ public class AirSimulation : MonoBehaviour {
             Step();
     }
 
+    [Button("Generate Node Grid")]
+    public void GenerateGrid() {
+        Nodes = new Node[_gridSize.x, _gridSize.y];
+
+        for (int i = 0; i < _gridSize.x; i++) {
+            for (int j = 0; j < _gridSize.y; j++) {
+                Nodes[i,j].NodePosition = new Vector2Int(i, j);
+                Nodes[i,j].Density = _initialAmountOfAir;
+                Nodes[i,j].NodeVelocity = _initialVelocity;
+            }
+        }
+    }
+
     [Button("Step Simulation")]
     public void Step() {
+        ChangeVelocitiesBasedOnDensityDifferences();
+        ChangeDensitiesBasedOnVelocities();
+    }
+
+    [Button("Step (1) - Velocities"), HorizontalGroup("Steps")]
+    public void ChangeVelocitiesBasedOnDensityDifferences() {
         Node[,] newNodes = Nodes.Clone() as Node[,];
 
         for (int i = 0; i < _gridSize.x; i++) {
@@ -38,7 +57,6 @@ public class AirSimulation : MonoBehaviour {
 
                 //0.70710678f é igual 1/sqrt(2)
                 if (i > 0) { // esquerda
-                    
                     if (j < _gridSize.y - 1) {
                         float densityDifferenceTopLeft = Nodes[i, j].Density - Nodes[i - 1, j + 1].Density;
                         finalVelocity += densityDifferenceTopLeft * 0.70710678f * (Vector2.left + Vector2.up).normalized;
@@ -85,18 +103,22 @@ public class AirSimulation : MonoBehaviour {
         Nodes = newNodes.Clone() as Node[,];
     }
 
-    [Button("Generate Node Grid")]
-    public void GenerateGrid() {
-        Nodes = new Node[_gridSize.x, _gridSize.y];
+    [Button("Step (2) - Densities"), HorizontalGroup("Steps")]
+    public void ChangeDensitiesBasedOnVelocities() {
+        Node[,] newNodes = Nodes.Clone() as Node[,];
 
         for (int i = 0; i < _gridSize.x; i++) {
             for (int j = 0; j < _gridSize.y; j++) {
-                Nodes[i,j].NodePosition = new Vector2Int(i, j);
-                Nodes[i,j].Density = _initialAmountOfAir;
-                Nodes[i,j].NodeVelocity = _initialVelocity;
+                Vector2 velocityVector = Nodes[i, j].NodeVelocity + Nodes[i, j].NodePosition;
+
+                int topIndex = Mathf.CeilToInt(velocityVector.y);
+                int bottomIndex = Mathf.FloorToInt(velocityVector.y);
+                int rightIndex = Mathf.CeilToInt(velocityVector.x);
+                int leftIndex = Mathf.FloorToInt(velocityVector.x);
             }
         }
-    }
 
+        Nodes = newNodes.Clone() as Node[,];
+    }
 
 }
