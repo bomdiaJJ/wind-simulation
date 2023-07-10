@@ -7,7 +7,7 @@ public class SimulationDebug : MonoBehaviour {
 
     [SerializeField] private Vector2Int _selectedNodeIndex;
     [SerializeField] private float _amountOfAirToSet;
-    
+
     [SerializeField] private TextMeshProUGUI _nodePropertiesText;
 
     private Camera _mainCamera;
@@ -30,32 +30,32 @@ public class SimulationDebug : MonoBehaviour {
     }
 
     private void ShowNodeProperties() {
-        if (_selectedNodeIndex.x < 0 || _selectedNodeIndex.y < 0 || _selectedNodeIndex.x >= _airSimulation.Nodes.GetLength(0) || _selectedNodeIndex.y >= _airSimulation.Nodes.GetLength(1)) {
-            _nodePropertiesText.text = "";
-            return;
-        }
+        // if (_selectedNodeIndex.x < 0 || _selectedNodeIndex.y < 0 || _selectedNodeIndex.x >= _airSimulation.Nodes.GetLength(0) || _selectedNodeIndex.y >= _airSimulation.Nodes.GetLength(1)) {
+        //     _nodePropertiesText.text = "";
+        //     return;
+        // }
 
-        _nodePropertiesText.text = 
-            string.Concat(
-                $"Node [{_selectedNodeIndex.x}, {_selectedNodeIndex.y}]",
-                "\nDensity: ", _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].Density,
-                "\nMagnitude: ", _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].NodeVelocity.magnitude,
-                "\nVelocity: ", _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].NodeVelocity
-            ); 
+        // _nodePropertiesText.text = 
+        //     string.Concat(
+        //         $"Node [{_selectedNodeIndex.x}, {_selectedNodeIndex.y}]",
+        //         "\nDensity: ", _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].Density,
+        //         "\nMagnitude: ", _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].NodeVelocity.magnitude,
+        //         "\nVelocity: ", _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].NodeVelocity
+        //     ); 
     }
 
     [Button("Set amount of air to node by index")]
     public void SetAmountOfAirByIndex() {
-        if (_selectedNodeIndex.x < 0 || _selectedNodeIndex.y < 0) {
-            Debug.Log("Node inválido (Índice negativo).");
-            return;
-        }
+        // if (_selectedNodeIndex.x < 0 || _selectedNodeIndex.y < 0) {
+        //     Debug.Log("Node inválido (Índice negativo).");
+        //     return;
+        // }
 
-        if (_selectedNodeIndex.x >= _airSimulation.Nodes.GetLength(0) || _selectedNodeIndex.y >= _airSimulation.Nodes.GetLength(1)) {
-            Debug.Log("Node não existe (Índice fora do limite).");
-            return;
-        }
+        // if (_selectedNodeIndex.x >= _airSimulation.Nodes.GetLength(0) || _selectedNodeIndex.y >= _airSimulation.Nodes.GetLength(1)) {
+        //     Debug.Log("Node não existe (Índice fora do limite).");
+        //     return;
+        // }
 
-        _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].Density = _amountOfAirToSet;
+        // _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].Density = _amountOfAirToSet;
     }
 }
