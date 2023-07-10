@@ -146,18 +146,18 @@ public class AirSimulation : MonoBehaviour {
                 bool movedDensity = false;
 
                 if (rightNode.HasValue && Nodes[i, j].NodeVelocity.x > 0) {
-                    newNodes[rightNode.Value.x, rightNode.Value.y].Density += horizontalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude * Nodes[i, j].Density;
+                    newNodes[rightNode.Value.x, rightNode.Value.y].Density += horizontalPartOfTotalVelocity * Nodes[i, j].Density;
                     movedDensity = true;
                 } else if (leftNode.HasValue && Nodes[i, j].NodeVelocity.x < 0) {
-                    newNodes[leftNode.Value.x, leftNode.Value.y].Density += horizontalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude * Nodes[i, j].Density;
+                    newNodes[leftNode.Value.x, leftNode.Value.y].Density += horizontalPartOfTotalVelocity * Nodes[i, j].Density;
                     movedDensity = true;
                 }
 
                 if (topNode.HasValue && Nodes[i, j].NodeVelocity.y > 0) {
-                    newNodes[topNode.Value.x, topNode.Value.y].Density += verticalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude * Nodes[i, j].Density;
+                    newNodes[topNode.Value.x, topNode.Value.y].Density += verticalPartOfTotalVelocity * Nodes[i, j].Density;
                     movedDensity = true;
                 } else if (bottomNode.HasValue && Nodes[i, j].NodeVelocity.y < 0) {
-                    newNodes[bottomNode.Value.x, bottomNode.Value.y].Density += verticalPartOfTotalVelocity * Nodes[i, j].NodeVelocity.magnitude * Nodes[i, j].Density;
+                    newNodes[bottomNode.Value.x, bottomNode.Value.y].Density += verticalPartOfTotalVelocity * Nodes[i, j].Density;
                     movedDensity = true;
                 }
 
