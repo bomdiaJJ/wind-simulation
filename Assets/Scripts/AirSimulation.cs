@@ -9,12 +9,14 @@ public class AirSimulation : MonoBehaviour {
     private bool _isSimulationRunning = true;
 
     public Node[] Nodes { get; set; }
-    private Node[] previousNodes { get; set; }
+    public Vector2Int GridSize { get => _gridSize; }
+
+    private Node[] _previousNodes;
 
     [Button("Generate Node Grid")]
     public void GenerateNodeGrid() {
         Nodes = new Node[(_gridSize.x + 2) * (_gridSize.y + 2)];
-        previousNodes = new Node[(_gridSize.x + 2) * (_gridSize.y + 2)];
+        _previousNodes = new Node[(_gridSize.x + 2) * (_gridSize.y + 2)];
         
         for (int i = 0; i < Nodes.Length; i++) {
             Nodes[i].NodeVelocity = _initialVelocity;
@@ -41,7 +43,7 @@ public class AirSimulation : MonoBehaviour {
                     //     x[IX(i,j+1)]))/(1+4*a);
 
                     Nodes[IX(i, j)].Density = 
-                        (previousNodes[IX(i, j)].Density + 
+                        (_previousNodes[IX(i, j)].Density + 
                         a * (Nodes[IX(i - 1, j)].Density +
                         Nodes[IX(i + 1, j)].Density + 
                         Nodes[IX(i, j - 1)].Density + 
@@ -93,8 +95,7 @@ public class AirSimulation : MonoBehaviour {
         // x[IX(N+1,N+1)] = 0.5*(x[IX(N,N+1)]+x[IX(N+1,N )]);
     }
 
-
-    private int IX (int xPos, int yPos) {
+    public int IX (int xPos, int yPos) {
         return yPos + (_gridSize.y + 2) * xPos;
     }
 
