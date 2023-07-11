@@ -46,16 +46,17 @@ public class SimulationDebug : MonoBehaviour {
 
     [Button("Set amount of air to node by index")]
     public void SetAmountOfAirByIndex() {
-        // if (_selectedNodeIndex.x < 0 || _selectedNodeIndex.y < 0) {
-        //     Debug.Log("Node inválido (Índice negativo).");
-        //     return;
-        // }
+        if (_selectedNodeIndex.x < 0 || _selectedNodeIndex.y < 0) {
+            Debug.Log("Node inválido (Índice negativo).");
+            return;
+        }
 
-        // if (_selectedNodeIndex.x >= _airSimulation.Nodes.GetLength(0) || _selectedNodeIndex.y >= _airSimulation.Nodes.GetLength(1)) {
-        //     Debug.Log("Node não existe (Índice fora do limite).");
-        //     return;
-        // }
+        if (_selectedNodeIndex.x >= _airSimulation.GridSize || _selectedNodeIndex.y >= _airSimulation.GridSize) {
+            Debug.Log("Node não existe (Índice fora do limite).");
+            return;
+        }
 
-        // _airSimulation.Nodes[_selectedNodeIndex.x, _selectedNodeIndex.y].Density = _amountOfAirToSet;
+        int nodeIndex = _airSimulation.IX(_selectedNodeIndex.x, _selectedNodeIndex.y);
+        _airSimulation.Nodes[nodeIndex].Density = _amountOfAirToSet;
     }
 }

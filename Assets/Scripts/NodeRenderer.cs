@@ -23,8 +23,8 @@ public class NodeRenderer : ImmediateModeShapeDrawer {
     }
 
     private void DrawNodes() {
-        for (int i = 0; i < _airSimulation.GridSize.x; i++) {
-            for (int j = 0; j < _airSimulation.GridSize.y; j++) {
+        for (int i = 0; i < _airSimulation.GridSize; i++) {
+            for (int j = 0; j < _airSimulation.GridSize; j++) {
                 int nodeIndex = _airSimulation.IX(i, j);
 
                 Vector3 nodePositionInWorld = new Vector3 {
